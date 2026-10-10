@@ -29,11 +29,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | [Meshari Mohammed Aldosari] |
+| **Student ID** | [446050918] |
+| **University Email** | [446050918]@std.psau.edu.sa |
+| **GitHub Username** | [MeshariAldosari1] |
+| **Repository Link** | [[Paste your repository link here](https://github.com/MeshariAldosari1/OS-Assignment1-Meshari-Aldosari)] |
  
 ---
 
@@ -129,81 +129,111 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [October 6, 2026, 8:25 PM]
+**What I did**:Reviewed the starter code to understand how the scheduling works.
 
-**Details**:
+**Details**: 
+-Reviewed the Process and SchedulerSimulation classes.
+-Learned how Round-Robin scheduling works.
+-Understood how threads are created and run.
+-Followed the program output step by step.
 
-**Challenges**:
+**Challenges**:Understanding how threads work with the ready queue.
 
-**Solution**:
+**Solution**:Reviewed the code again and used OS concepts from the textbook to understand it better.
 
-**Time spent**:
-
----
-
-### Entry 2 - [Date and Time]
-**What I did**:
-
-**Details**:
-
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
+**Time spent**: 1 hour
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 2 - [October 8, 2026 , 12:02 AM]
+**What I did**:Added process priorities.
 
-**Details**:
+**Details**: 
+-Added the integer priority field to the Process class.
+-Added setPriority() and getPriority() methods.
+-Generated random priorities from 1 to 10.
+-Displayed priorities when processes entered the ready queue.
+-Kept the scheduling order FIFO.
+-Committed the Feature 1 changes.
 
-**Challenges**:
+**Challenges**:Understanding why priority messages appeared more than once.
 
-**Solution**:
+**Solution**:Reviewed the output and confirmed that unfinished processes display their priorities again when they return to the ready queue.
 
-**Time spent**:
-
----
-
-### Entry 4 - [Date and Time]
-**What I did**:
-
-**Details**:
-
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
+**Time spent**: 3 hours
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 3 - [October 8, 2026 at about 8:30 PM]
+**What I did**:Added the context-switch counter.
 
 **Details**:
+-Added the static variable contextSwitchCount.
+-Increased the counter after currentThread.start().
+-Displayed the total at the end of the simulation.
+-Ran the program and checked that the total was 31.
+-Committed: Feature 2 : Count and display total context switches.
 
-**Challenges**:
+**Challenges**:Confirming whether the counter result was correct.
 
-**Solution**:
+**Solution**:Compared Total context switches: 31 with the expected result for my student ID.
 
-**Time spent**:
+**Time spent**: 3 hours
+
+---
+
+### Entry 4 - [October 9, 2026 , 5:14 PM]
+**What I did**:Added waiting-time tracking and the timing summary.
+
+**Details**:
+-Added fields for creation time and ready-queue entry time.
+-Accumulated waiting time before each execution turn.
+-Calculated turnaround time as waiting time plus burst time.
+-Stored each process once in allProcesses.
+-Added printProcessSummary() to display the timing table.
+-Committed: Feature 3 : Calculate and display waiting and turnaround times
+
+**Challenges**:Encountered an error at printProcessSummary(allProcesses).
+
+**Solution**:Reviewed the correct placement of the method outside main, with its call inside main.
+
+**Time spent**: 2 hours
+
+---
+
+### Entry 5 - [October 10, 2026 , 10:35 PM]
+**What I did**:Reviewed the code comments.
+
+**Details**:
+-Checked the comments explaining all three features.
+-Simplified their wording.
+-Clarified that priority does not change the execution order.
+-Explained how waiting time is accumulated across turns.
+
+**Challenges**:Keeping the comments simple and technically accurate.
+
+**Solution**:Compared each comment with the behavior of the related code.
+
+**Time spent**: 1 hour
 
 ---
 
 ### Entry 6 - [Optional - Date and Time]
-**What I did**:
+**What I did**:Worked on the reflection and technical answers.
 
 **Details**:
+-Explained the difference between threads and processes.
+-Used P4 to explain re-queueing.
+-Described the thread lifecycle.
+-Reviewed the roles of start(), join(), and sleep().
+-Summarized the main concepts I learned.
 
-**Challenges**:
+**Challenges**:Distinguishing the main thread’s waiting from the worker thread’s sleeping.
 
-**Solution**:
+**Solution**:Reviewed that join() makes the main thread wait, while sleep() pauses the worker executing it.
 
-**Time spent**:
+**Time spent**: 2 hours
 
 ---
 
@@ -211,13 +241,13 @@
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
+**Total time spent on assignment**: [12 hours]
 
-**Most challenging part**:
+**Most challenging part**:Tracking waiting time across multiple execution turns and placing the summary method correctly.
 
-**Most interesting learning**:
+**Most interesting learning**:Learning that an unfinished process uses a new thread each time it returns to the ready queue because a terminated Java thread cannot be restarted
 
-**What I would do differently next time**:
+**What I would do differently next time**:Record each work session immediately, test after every small change, and check method placement before running the program.
 
 ---
 
