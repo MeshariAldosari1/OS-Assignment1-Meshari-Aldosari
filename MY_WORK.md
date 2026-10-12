@@ -267,7 +267,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[I discovered that a Java thread's tasks are defined by the Runnable interface. In this simulation, a thread is created by new Thread(process), and its execution of the run() method is made possible by start(). The main thread is forced to wait until the current worker thread is finished by the join() method. This enables the simulated processes to alternate in the necessary sequence. Additionally, I discovered that Thread.sleep() simulates execution time by pausing the active thread. Eventually, I realized that the Process class does not represent a distinct operating-system process, but rather a simulated process.]
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -275,7 +275,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[Adding the waiting-time computation and linking it to the summary table was the hardest step for me. A process's waiting time must account for each waiting interval since it may enter the ready queue several times. P4, for instance, joins the queue twice before it is finished. Additionally, I had to verify the method's placement after running into an error at printProcessSummary(allProcesses). The definition of the method belongs outside of main but inside SchedulerSimulation, however the method call belongs inside main. This made it easier for me to comprehend how time information gets to the final table and how methods are placed.]
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -283,7 +283,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[In order to determine the proper places in the code, I requested the current lines before to each addition. It was easy to follow the adjustments because I worked through each of the three elements independently. I verified that the priority showed up when a task joined the ready queue for Feature 1. I looked at the finished product for Feature 2 and got 31 context transitions in total. I looked at the method's location and call when I saw the summary-method error. These procedures made it easier for me to relate each code modification to its intended use and result.]
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
 
@@ -291,7 +291,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+[Applications that use multithreading can execute background operations while maintaining responsiveness. As the user interacts with its interface, a music player, for instance, may load audio in a worker thread. Multiple worker threads can be used by a server to manage separate requests. Shared data needs to be handled carefully since threads in the same process share memory. The assignment uses join(), which waits for another thread to finish, to show coordination. These ideas serve as a basis for comprehending thread coordination and background processing in more complex applications.]
 
 ### Optional: What would you like to learn more about?
 
