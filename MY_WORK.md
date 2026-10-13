@@ -323,7 +323,7 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[While threads within the same process share memory and resources, an operating-system process typically has its own virtual address space. Every thread still has its own execution state and stack. Threads can communicate via shared objects rather than inter-process communication, and they typically have lower creation overhead than distinct processes. In this assignment, a simulated process is represented by Process implements Runnable, and the real Java thread is created by new Thread(process) in addProcessToQueue(). The simulation may handle the same process objects, queue, and map within a single JVM by using threads.]
 
 ## Question 2: Ready Queue Behavior
 
@@ -335,15 +335,29 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+[A process moves back to the back of the FIFO ready queue when it does not complete within its time quantum and other processes are still waiting. P4 had a burst time of 11153 ms and a time quantum of 5000 ms in my output. It had 6153 ms left after its first run and 1153 ms left after its second run. After its original queue entry, it was re-queued twice since it finished during its third run. This keeps one lengthy process from using the simulated CPU until it is finished and allows other ready processes a turn.]
 
 Example from my output:
 ```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
+[  ? P4 executing quantum [5000ms]
+     Remaining time: 6153ms
+  ? P4 yields CPU for context switch
+P4 (Priority: 9) enters the ready queue.
+  ? P4 added to ready queue │ Burst time: 11153ms
+
+  ? P4 executing quantum [5000ms]
+     Remaining time: 1153ms
+  ? P4 yields CPU for context switch
+P4 (Priority: 9) enters the ready queue.
+  ? P4 added to ready queue │ Burst time: 11153ms
+
+  ? P4 executing quantum [1153ms]
+     Remaining time: 0ms
+  ? P4 finished execution!]
 ```
 
 **Explanation of example:**
-[Explain what is happening in the output snippet you pasted.]
+[P4 runs 5000 ms. 6153 ms left. P4 goes back to ready queue. After a further 5000 ms turn it has 1153 ms left and is re-queued again. It ended on its 3rd turn, so it was requeued twice. This allows other processes to run between P4’s turns, providing fairness.]
 
 ## Question 3: Thread Lifecycle
 
@@ -353,15 +367,15 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences overall; one short explanation per state)*
 
-1. **New**: [When is P1 in the New state?]
+1. **New**: [P1’s thread enters the NEW state when new Thread(process) creates it inside addProcessToQueue().]
 
-2. **Runnable**: [When does P1 become Runnable?]
+3. **Runnable**: [Calling currentThread.start() makes P1’s thread eligible for execution.]
 
-3. **Running**: [When is P1 Running?]
+5. **Running**: [When scheduled, P1’s thread executes run() for its simulated 3174 ms burst; running is part of Java’s RUNNABLE state.]
 
-4. **Waiting**: [When and why would a thread be Waiting?]
+7. **Waiting**: [Thread.sleep(stepTime) puts P1’s worker thread in TIMED_WAITING, while currentThread.join() makes the main thread wait for that worker to finish.]
 
-5. **Terminated**: [When is P1 Terminated?]
+9. **Terminated**: [P1’s thread enters TERMINATED when run() returns; an unfinished simulated process receives a new thread for its next turn.]
 
 ## Question 4: Real-World Applications
 
@@ -371,33 +385,34 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences per example)*
 
-### Example 1 (operating-system level): [Name of scenario]
+### Example 1 (operating-system level): [Operating-system scheduling of equal-priority threads]
 
 **Description**:
-[Describe the real-world scenario.]
+[Round-Robin scheduling allows an operating system to distribute CPU time equally among runnable threads. Like the quantum in the simulation, each thread is given a finite time slice. Another ready thread takes a turn if it uses its time slice without completing or blocking. Because one CPU-intensive thread cannot consistently stop its peers from operating, this increases responsiveness and fairness.]
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+[It gives each ready thread a turn with a fixed time slice, preventing one thread from monopolizing the CPU. This supports fairness and responsiveness, while the fixed quantum makes CPU sharing more predictable.]
 
-### Example 2: [Name of application/scenario]
+### Example 2: [A server processing jobs in bounded steps]
 
 **Description**:
-[Describe the real-world scenario or application.]
+[By providing each incomplete work one defined step before going on to the next, a server might process many jobs. Every job has a corresponding simulated process, and every processing step has a corresponding quantum. While larger jobs continue to proceed, shorter jobs have the opportunity to be completed by being returned to the queue. Because generating Java threads by itself does not ensure Round-Robin execution, this calls for explicit application scheduling.]
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+[It gives each job a turn, preventing a large job from blocking smaller jobs. This improves fairness and responsiveness, while bounded processing steps make the service more predictable.]
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1.A simulated Process object is different from an operating-system process and can use a new Java thread for each execution turn.
+
+2.Round-Robin uses FIFO re-queueing to give unfinished processes repeated turns, while the displayed priority does not change their order.
+
+3.start(), join(), and sleep() have different roles, and waiting time must accumulate across all ready-queue intervals.
 
 **Concepts I need to study more:**
-1.
-2.
-
+1.Race conditions and synchronization when several threads access shared mutable data.
+2.Actual operating-system scheduling and the difference between counting thread starts and measuring real context switches.
 ---
 
 # ✅ Final Checklist (complete before submitting)
